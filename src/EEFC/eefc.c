@@ -1,6 +1,7 @@
 #include "eefc.h"
 #include <sam3xa/include/sam3x8e.h>
-#include "../util/types.h"
+#include <string.h>
+#include <stdbool.h>
 
 int rawEEFCCommand(uint8_t controller, uint8_t cmd, uint16_t farg, void * resBuff){
   Efc * efcPtr = NULL;
@@ -12,7 +13,7 @@ int rawEEFCCommand(uint8_t controller, uint8_t cmd, uint16_t farg, void * resBuf
       efcPtr = EFC1;
       break;
     default:
-      return FALSE;
+      return false;
   }
 
   //execute command
@@ -21,10 +22,10 @@ int rawEEFCCommand(uint8_t controller, uint8_t cmd, uint16_t farg, void * resBuf
   //wait for complete
   for(;;){
     if(efcPtr->EEFC_FSR & EEFC_FSR_FRDY){
-      return TRUE;//sucess
+      return true;//sucess
     }
     else if ((efcPtr->EEFC_FSR & EEFC_FSR_FCMDE) || (efcPtr->EEFC_FSR & EEFC_FSR_FLOCKE)){
-      return FALSE; // bad command
+      return false; // bad command
     }
   }
 }
