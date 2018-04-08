@@ -1,3 +1,8 @@
+/**
+@file
+@brief EEFC (enhanced flash controller) hardware interface 
+*/
+
 #ifndef EEFC_H_
 #define EEFC_H_
 #include <stdint.h>
