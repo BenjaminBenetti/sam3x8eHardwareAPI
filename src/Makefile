@@ -6,18 +6,15 @@ INCLD = -I ../3rdParty/ATMEL/ -I ../3rdParty/CMSIS/include
 
 OUTPUT_DIR = ../build
 SRC_CC = UART/*.c Timers/*.c EEFC/*.c
-SRC_O  =  ../build/*.o
 
-
-libsam3x8e.a : $(SRC_O)
-	$(AR) rcs ../build/$@ $^
-
-$(SRC_O) : $(SRC_CC) $(OUTPUT_DIR)
+libsam3x8e.a : $(SRC_CC) $(OUTPUT_DIR)/.dirstamp
 	$(CC) $(CFLAGS) -c $(SRC_CC) $(INCLD)
 	mv ./*.o $(OUTPUT_DIR)
+	$(AR) rcs ../build/$@ $^
 
-$(OUTPUT_DIR):
-	mkdir $(OUTPUT_DIR)
+$(OUTPUT_DIR)/.dirstamp:
+	mkdir -p $(OUTPUT_DIR)
+	touch $@
 
 clean:
 	rm ../build/libsam3x8e.a
