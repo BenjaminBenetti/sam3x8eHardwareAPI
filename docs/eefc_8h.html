@@ -67,8 +67,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">eefc.h File Reference</div>  </div>
 </div><!--header-->
@@ -77,96 +79,110 @@ $(function() {
 <p>EEFC (enhanced flash controller) hardware interface.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 </div>
 <p><a href="eefc_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_flash_descriptor.html">FlashDescriptor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:acd3ec74f0724c99f775276ef08b1e449"><td class="memItemLeft" align="right" valign="top"><a id="acd3ec74f0724c99f775276ef08b1e449"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_GETD</b>&#160;&#160;&#160;0x00</td></tr>
-<tr class="separator:acd3ec74f0724c99f775276ef08b1e449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2394994e087f9b1004939e1678c0c645"><td class="memItemLeft" align="right" valign="top"><a id="a2394994e087f9b1004939e1678c0c645"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_WP</b>&#160;&#160;&#160;0x01</td></tr>
-<tr class="separator:a2394994e087f9b1004939e1678c0c645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa17ca60aac864816840e82113f2d0ef7"><td class="memItemLeft" align="right" valign="top"><a id="aa17ca60aac864816840e82113f2d0ef7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_WPL</b>&#160;&#160;&#160;0x02</td></tr>
-<tr class="separator:aa17ca60aac864816840e82113f2d0ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07cf5b1dbae5eb08492961c8122119b6"><td class="memItemLeft" align="right" valign="top"><a id="a07cf5b1dbae5eb08492961c8122119b6"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_EWP</b>&#160;&#160;&#160;0x03</td></tr>
-<tr class="separator:a07cf5b1dbae5eb08492961c8122119b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec7e5b1609eea82b53bb85ca735ce04b"><td class="memItemLeft" align="right" valign="top"><a id="aec7e5b1609eea82b53bb85ca735ce04b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_EWPL</b>&#160;&#160;&#160;0x04</td></tr>
-<tr class="separator:aec7e5b1609eea82b53bb85ca735ce04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a145da21e650b823b64a7e35a45c5754c"><td class="memItemLeft" align="right" valign="top"><a id="a145da21e650b823b64a7e35a45c5754c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_EA</b>&#160;&#160;&#160;0x05</td></tr>
-<tr class="separator:a145da21e650b823b64a7e35a45c5754c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a725c943b09e95daa2b7c0062f4e07197"><td class="memItemLeft" align="right" valign="top"><a id="a725c943b09e95daa2b7c0062f4e07197"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_SLB</b>&#160;&#160;&#160;0x08</td></tr>
-<tr class="separator:a725c943b09e95daa2b7c0062f4e07197"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fe9a3744beac012992cf9d8d4bacf21"><td class="memItemLeft" align="right" valign="top"><a id="a1fe9a3744beac012992cf9d8d4bacf21"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_CLB</b>&#160;&#160;&#160;0x09</td></tr>
-<tr class="separator:a1fe9a3744beac012992cf9d8d4bacf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afea10aa040168672b396d33a3d6b659c"><td class="memItemLeft" align="right" valign="top"><a id="afea10aa040168672b396d33a3d6b659c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_GLB</b>&#160;&#160;&#160;0x0A</td></tr>
-<tr class="separator:afea10aa040168672b396d33a3d6b659c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa46aa397bfa87840cd13d9ca711a8140"><td class="memItemLeft" align="right" valign="top"><a id="aa46aa397bfa87840cd13d9ca711a8140"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_SGPB</b>&#160;&#160;&#160;0x0B</td></tr>
-<tr class="separator:aa46aa397bfa87840cd13d9ca711a8140"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa259e974fd96cff6e73dc9194494acb1"><td class="memItemLeft" align="right" valign="top"><a id="aa259e974fd96cff6e73dc9194494acb1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_CGPB</b>&#160;&#160;&#160;0x0C</td></tr>
-<tr class="separator:aa259e974fd96cff6e73dc9194494acb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea6087d1a5502a5b89c25dc57e74e651"><td class="memItemLeft" align="right" valign="top"><a id="aea6087d1a5502a5b89c25dc57e74e651"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_GGPB</b>&#160;&#160;&#160;0x0D</td></tr>
-<tr class="separator:aea6087d1a5502a5b89c25dc57e74e651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a34b0065cdceb759a32db75817b16a8"><td class="memItemLeft" align="right" valign="top"><a id="a6a34b0065cdceb759a32db75817b16a8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_STUI</b>&#160;&#160;&#160;0x0E</td></tr>
-<tr class="separator:a6a34b0065cdceb759a32db75817b16a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13d10f890d6a75475a078a2a1e158118"><td class="memItemLeft" align="right" valign="top"><a id="a13d10f890d6a75475a078a2a1e158118"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_SPUI</b>&#160;&#160;&#160;0x0F</td></tr>
-<tr class="separator:a13d10f890d6a75475a078a2a1e158118"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac891b219740026b9e1f4d23b1e2fed36"><td class="memItemLeft" align="right" valign="top"><a id="ac891b219740026b9e1f4d23b1e2fed36"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EEFC_GCALB</b>&#160;&#160;&#160;0x10</td></tr>
-<tr class="separator:ac891b219740026b9e1f4d23b1e2fed36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5602763931047177db6d684a319adfe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#ad5602763931047177db6d684a319adfe">FLASH_CONTROLLER_COUNT</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ad5602763931047177db6d684a319adfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0f61be11dfc138d9b66beb8c0c216577"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#a0f61be11dfc138d9b66beb8c0c216577">rawEEFCCommand</a> (uint8_t controller, uint8_t cmd, uint16_t farg, void *resBuff)</td></tr>
-<tr class="separator:a0f61be11dfc138d9b66beb8c0c216577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49dd78a836e6d1d949a11f7a53d46ac0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#a49dd78a836e6d1d949a11f7a53d46ac0">readFlashDescriptor</a> (void *buffer)</td></tr>
-<tr class="separator:a49dd78a836e6d1d949a11f7a53d46ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af540a1a2e4ae1a4821372a27a8bd649f"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#af540a1a2e4ae1a4821372a27a8bd649f">getFlashStartAddress</a> (uint16_t controller)</td></tr>
+<tr class="separator:af540a1a2e4ae1a4821372a27a8bd649f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae83f83469177009852ecf3217adca23d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#ae83f83469177009852ecf3217adca23d">readFlashDescriptor</a> (struct <a class="el" href="struct_flash_descriptor.html">FlashDescriptor</a> *fDesc, uint16_t controller, uint32_t lenPlanesMax, uint32_t lenLockRegionMax)</td></tr>
+<tr class="separator:ae83f83469177009852ecf3217adca23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d057595847c4787eca366f1dfd59f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#af0d057595847c4787eca366f1dfd59f4">readPage</a> (uint16_t controller, uint16_t page, uint8_t *buffer)</td></tr>
+<tr class="separator:af0d057595847c4787eca366f1dfd59f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897f95f59fe634da0b32ccb8e84bcdb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eefc_8h.html#a897f95f59fe634da0b32ccb8e84bcdb4">writePage</a> (uint16_t controller, uint16_t page, uint8_t *buffer)</td></tr>
+<tr class="separator:a897f95f59fe634da0b32ccb8e84bcdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a3d3b72ce03b3045386eec2ec31701a4c"><td class="memItemLeft" align="right" valign="top"><a id="a3d3b72ce03b3045386eec2ec31701a4c"></a>
+struct <a class="el" href="struct_flash_descriptor.html">FlashDescriptor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FlashDescriptor</b></td></tr>
+<tr class="separator:a3d3b72ce03b3045386eec2ec31701a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>EEFC (enhanced flash controller) hardware interface. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a0f61be11dfc138d9b66beb8c0c216577"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f61be11dfc138d9b66beb8c0c216577">&#9670;&nbsp;</a></span>rawEEFCCommand()</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ad5602763931047177db6d684a319adfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5602763931047177db6d684a319adfe">&#9670;&nbsp;</a></span>FLASH_CONTROLLER_COUNT</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int rawEEFCCommand </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>controller</em>, </td>
+          <td class="memname">#define FLASH_CONTROLLER_COUNT&#160;&#160;&#160;2</td>
         </tr>
+      </table>
+</div><div class="memdoc">
+<p>the number of flash controllers on the sam3x8e </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af540a1a2e4ae1a4821372a27a8bd649f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af540a1a2e4ae1a4821372a27a8bd649f">&#9670;&nbsp;</a></span>getFlashStartAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
         <tr>
-          <td class="paramkey"></td>
+          <td class="memname">uint8_t* getFlashStartAddress </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>controller</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>get the start address for controller </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">controller</td><td>the controller for which the start address is to be fetech. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the address at which said flash memory starts </dd></dl>
+
+</div>
+</div>
+<a id="ae83f83469177009852ecf3217adca23d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae83f83469177009852ecf3217adca23d">&#9670;&nbsp;</a></span>readFlashDescriptor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readFlashDescriptor </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_flash_descriptor.html">FlashDescriptor</a> *&#160;</td>
+          <td class="paramname"><em>fDesc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>farg</em>, </td>
+          <td class="paramname"><em>controller</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>resBuff</em>&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>lenPlanesMax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>lenLockRegionMax</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -175,35 +191,107 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>execute a raw EEFC command. see EEFC section in sam3x8e manual for command list. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>read the flash descriptor form the EEFC controller. and populate the flash descriptor structure </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">controller</td><td>id of the EEFC that the command is to be run on. Sam3x8e has two. 0 and 1 respectivly </td></tr>
-    <tr><td class="paramname">cmd</td><td>EEFC command to execute </td></tr>
-    <tr><td class="paramname">farg</td><td>argument for the command </td></tr>
-    <tr><td class="paramname">resBuff</td><td>if the command does produce a result, it will be stored here, with NO BOUNDS CHECK! </td></tr>
+    <tr><td class="paramname">fDesc</td><td>the flash descriptor strcture to be populated by the function call. Note, you must have pre allocated, bytesInPlane and bytesPerLockRegion arrays </td></tr>
+    <tr><td class="paramname">controller</td><td>the controller on which you want to read the flash descriptor </td></tr>
+    <tr><td class="paramname">lenPlanesMax</td><td>the max number of plane words that can be placed in bytesInPlane array. </td></tr>
+    <tr><td class="paramname">lenLockRegionMax</td><td>the max number of lock region words that can be placed in bytesPerLockRegion </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the flash descriptor structure will be filled out. lenBytesInPlane and lenBytesPerLockRegion will be set to the number of actual values in there respective arrays. if lenBytesInPlane or lenBytesPerLockRegion is equal to there max counterparts, there may be additional regions / planes on the flash chip. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_flash_descriptor.html">FlashDescriptor</a> </dd>
+<dd>
+<a class="el" href="eefc_8h.html#ad5602763931047177db6d684a319adfe">FLASH_CONTROLLER_COUNT</a> </dd></dl>
 
 </div>
 </div>
-<a id="a49dd78a836e6d1d949a11f7a53d46ac0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49dd78a836e6d1d949a11f7a53d46ac0">&#9670;&nbsp;</a></span>readFlashDescriptor()</h2>
+<a id="af0d057595847c4787eca366f1dfd59f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d057595847c4787eca366f1dfd59f4">&#9670;&nbsp;</a></span>readPage()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void readFlashDescriptor </td>
+          <td class="memname">bool readPage </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>buffer</em></td><td>)</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>controller</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>read the flash descriptor form the EEFC controller. BUFFER IS TMP TMP TMP !!! TODO FIX </p>
+<p>read the specified page from the specified controller </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">controller</td><td>the controller from which to read </td></tr>
+    <tr><td class="paramname">page</td><td>the page which is to be read </td></tr>
+    <tr><td class="paramname">buffer</td><td>in to which the page is read. MUST be large enough to hold a page of data </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="eefc_8h.html#ae83f83469177009852ecf3217adca23d">readFlashDescriptor</a> </dd></dl>
+
+</div>
+</div>
+<a id="a897f95f59fe634da0b32ccb8e84bcdb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897f95f59fe634da0b32ccb8e84bcdb4">&#9670;&nbsp;</a></span>writePage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool writePage </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>controller</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>write a page to the specified controller at the specified page address </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">controller</td><td>the controller to which you whish to write </td></tr>
+    <tr><td class="paramname">page</td><td>the page you want to write </td></tr>
+    <tr><td class="paramname">buffer</td><td>a buffer containing the data to be writen to the page. MUST be as large as a page </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="eefc_8h.html#ae83f83469177009852ecf3217adca23d">readFlashDescriptor</a> </dd></dl>
 
 </div>
 </div>

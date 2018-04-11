@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['raweefccommand',['rawEEFCCommand',['../eefc_8h.html#a0f61be11dfc138d9b66beb8c0c216577',1,'eefc.c']]],
-  ['readflashdescriptor',['readFlashDescriptor',['../eefc_8h.html#a49dd78a836e6d1d949a11f7a53d46ac0',1,'eefc.c']]]
+  ['readflashdescriptor',['readFlashDescriptor',['../eefc_8h.html#ae83f83469177009852ecf3217adca23d',1,'eefc.c']]],
+  ['readpage',['readPage',['../eefc_8h.html#af0d057595847c4787eca366f1dfd59f4',1,'eefc.c']]]
 ];

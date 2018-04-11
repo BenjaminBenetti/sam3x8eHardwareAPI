@@ -1,7 +1,6 @@
 #include "eefc.h"
 #include <sam3xa/include/sam3x8e.h>
 #include <string.h>
-#include <stdbool.h>
 
 //EEFC command id list
 #define EEFC_GETD 0x00 // get descriptor
@@ -35,7 +34,6 @@ Efc * getEEFC(uint16_t con){
   return Eptr;
 }
 
-
 static int rawEEFCCommand(uint8_t controller, uint8_t cmd, uint16_t farg){
   Efc * efcPtr = getEEFC(controller);
 
@@ -65,8 +63,15 @@ void readFlashDescriptor(struct FlashDescriptor * fDesc, uint16_t controller, ui
   fDesc->numberOfPlanes = efcPtr->EEFC_FRR;
 
   int i = 0;
-  while(i < fDesc->numberOfPlanes && i < lenPlanesMax){
-    *(fDesc->bytesInPlane + i)  = efcPtr->EEFC_FRR;
+  while(i < fDesc->numberOfPlanes){
+    if(i < lenPlanesMax){
+      *(fDesc->bytesInPlane + i)  = efcPtr->EEFC_FRR;
+    }
+    else{
+      //read reg to "advance" value
+      uint32_t read = efcPtr->EEFC_FRR;
+    }
+
     i++;
   }
   fDesc->lenBytesInPlane = i;
@@ -74,14 +79,20 @@ void readFlashDescriptor(struct FlashDescriptor * fDesc, uint16_t controller, ui
   fDesc->numberOfLockBits = efcPtr->EEFC_FRR;
 
   i = 0;
-  while(i < fDesc->numberOfLockBits && i < lenLockRegionMax){
-    *(fDesc->bytesPerLockRegion + i) = efcPtr->EEFC_FRR;
+  while(i < fDesc->numberOfLockBits){
+    if(i < lenLockRegionMax){
+      *(fDesc->bytesPerLockRegion + i) = efcPtr->EEFC_FRR;
+    }
+    else {
+      //read reg to "advance" value
+      uint32_t read = efcPtr->EEFC_FRR;
+    }
     i++;
   }
   fDesc->lenBytesPerLockRegion = i;
 }
 
-void * getFlashStartAddress(uint16_t controller){
+uint8_t * getFlashStartAddress(uint16_t controller){
   //return flash address as described on page 31 of sam3x8e datasheet
   switch(controller){
     case 0:
@@ -89,4 +100,27 @@ void * getFlashStartAddress(uint16_t controller){
     case 1:
       return (void *) 0x000C0000;
   }
+}
+
+bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer){
+  struct FlashDescriptor fd;
+  readFlashDescriptor(&fd,controller,0,0);
+
+  uint8_t * pagePtr = getFlashStartAddress(controller) + fd.pageSize*page;
+
+  memcpy(buffer,pagePtr,fd.pageSize);
+  return true;
+}
+
+bool writePage(uint16_t controller, uint16_t page, uint8_t * buffer){
+  struct FlashDescriptor fd;
+  readFlashDescriptor(&fd,controller,0,0);
+
+  uint8_t * pagePtr = getFlashStartAddress(controller) + fd.pageSize*page;
+
+  //cpy in to EEFC latch buffer
+  memcpy(pagePtr,buffer,fd.pageSize);
+
+  //send write command
+  return rawEEFCCommand(controller,EEFC_EWP,page);
 }

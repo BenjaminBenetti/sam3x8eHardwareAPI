@@ -6,6 +6,7 @@
 #ifndef EEFC_H_
 #define EEFC_H_
 #include <stdint.h>
+#include <stdbool.h>
 
 /**
   this structure describes the layout of flash memory on the board.
@@ -32,6 +33,13 @@ struct FlashDescriptor{
 #define FLASH_CONTROLLER_COUNT 2
 
 /**
+  get the start address for controller
+  @param controller the controller for which the start address is to be fetech.
+  @return the address at which said flash memory starts
+*/
+uint8_t * getFlashStartAddress(uint16_t controller);
+
+/**
   read the flash descriptor form the EEFC controller. and populate the flash descriptor structure
   @param fDesc the flash descriptor strcture to be populated by the function call.
   Note, you must have pre allocated, bytesInPlane and bytesPerLockRegion arrays
@@ -47,10 +55,23 @@ struct FlashDescriptor{
 void readFlashDescriptor(struct FlashDescriptor * fDesc, uint16_t controller, uint32_t lenPlanesMax, uint32_t lenLockRegionMax);
 
 /**
-  get the start address for controller
-  @param controller the controller for which the start address is to be fetech.
-  @return the address at which said flash memory starts 
+  read the specified page from the specified controller
+  @param controller the controller from which to read
+  @param page the page which is to be read
+  @param buffer in to which the page is read. MUST be large enough to hold a page of data
+  @return true on success.
+  @see readFlashDescriptor
 */
-void * getFlashStartAddress(uint16_t controller);
+bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer);
+
+/**
+  write a page to the specified controller at the specified page address
+  @param controller the controller to which you whish to write
+  @param page the page you want to write
+  @param buffer a buffer containing the data to be writen to the page. MUST be as large as a page
+  @return true on success
+  @see readFlashDescriptor
+*/
+bool writePage(uint16_t controller, uint16_t page, uint8_t * buffer);
 
 #endif /*EEFC_H_*/
