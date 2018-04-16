@@ -8,6 +8,8 @@
 static char rxBuffer[UART_RX_BUFFER_SIZE];
 static uint32_t irxBuffer;
 
+static int readFromBuffer(char * ptr, int len);
+
 /*enable uart chip & channel 0 (for debug communcation).*/
 void initUART(void){
   //set PIO Lines to UART
@@ -51,6 +53,56 @@ void initUART(void){
   REG_UART_CR |= UART_CR_RXEN | UART_CR_TXEN;
 }
 
+uint32_t getRxBufferLenUart(){
+  return irxBuffer;
+}
+
+bool nCharactersReadyUart(uint32_t n){
+  if(irxBuffer >= n){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+uint32_t RxHasNewLine(){
+  for(uint32_t i =0; i < irxBuffer; i++){
+    if(rxBuffer[i] == '\n'){
+      return i;
+    }
+  }
+  return 0;
+}
+
+bool lineReadyUart(){
+  NVIC_DisableIRQ(IRQ_UART_ID);
+  if(RxHasNewLine()){
+    NVIC_EnableIRQ(IRQ_UART_ID);
+    return true;
+  }
+  else {
+    NVIC_EnableIRQ(IRQ_UART_ID);
+    return false;
+  }
+}
+
+void getNextLineUart(char * buff, uint32_t maxLen){
+  uint32_t cpyLen = RxHasNewLine() + 1;
+  if(cpyLen < maxLen){
+    readFromBuffer(buff,cpyLen);
+    buff[cpyLen - 1] = '\0';//remove new line
+    if(cpyLen - 2 >= 0 && buff[cpyLen - 2] == '\r'){
+      //remove carage return if present
+      buff[cpyLen - 2] = '\0';
+    }
+  }
+  else{
+    readFromBuffer(buff,maxLen);
+  }
+}
+
+
 //trigered on UART_RXRDY interrupt
 void UART_ISR(void){
   //save receive msg in to buffer
@@ -59,11 +111,14 @@ void UART_ISR(void){
 }
 
 static int readFromBuffer(char * ptr, int len){
+  NVIC_DisableIRQ(IRQ_UART_ID);
+
   int cpyLen = len - irxBuffer;
   if(cpyLen >= 0) cpyLen = irxBuffer;
   else cpyLen = len;
 
   if(cpyLen == 0){
+    NVIC_EnableIRQ(IRQ_UART_ID);
     return 0;
   }
   else {
@@ -79,6 +134,7 @@ static int readFromBuffer(char * ptr, int len){
     irxBuffer = 0;
   }
 
+  NVIC_EnableIRQ(IRQ_UART_ID);
   return cpyLen;
 }
 
