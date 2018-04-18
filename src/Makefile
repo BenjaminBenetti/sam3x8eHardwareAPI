@@ -1,7 +1,7 @@
 OBYCP = arm-none-eabi-objcopy
 CC = arm-none-eabi-gcc
 AR = arm-none-eabi-ar
-CFLAGS = --std=gnu11 -O0 -mcpu=cortex-m3 -mthumb -fno-builtin  --specs=nosys.specs -ffreestanding
+CFLAGS = --std=gnu11 -Os -mcpu=cortex-m3 -mthumb -fno-builtin --specs=nosys.specs --specs=nano.specs -ffreestanding
 INCLD = -I ../3rdParty/ATMEL/ -I ../3rdParty/CMSIS/include
 
 OUTPUT_DIR = ../build
