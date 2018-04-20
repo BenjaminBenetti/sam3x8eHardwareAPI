@@ -31,6 +31,8 @@ struct FlashDescriptor{
   the number of flash controllers on the sam3x8e
 */
 #define FLASH_CONTROLLER_COUNT 2
+#define FLASH_PAGE_SIZE 256
+#define FLASH_LEN 2048 // in pages
 
 /**
   get the start address for controller
@@ -63,6 +65,11 @@ void readFlashDescriptor(struct FlashDescriptor * fDesc, uint16_t controller, ui
   @see readFlashDescriptor
 */
 bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer);
+/**
+  like readPage but selects controller automatically
+  @see readPage
+*/
+bool readPageAuto(uint16_t page, uint8_t * buffer);
 
 /**
   write a page to the specified controller at the specified page address
@@ -73,5 +80,10 @@ bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer);
   @see readFlashDescriptor
 */
 bool writePage(uint16_t controller, uint16_t page, uint8_t * buffer);
+/**
+  like writePage but selects controller automatically
+  @see writePage
+*/
+bool writePageAuto(uint16_t page, uint8_t * buffer);
 
 #endif /*EEFC_H_*/

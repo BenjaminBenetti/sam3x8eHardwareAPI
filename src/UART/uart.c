@@ -89,6 +89,12 @@ bool lineReadyUart(){
 
 void getNextLineUart(char * buff, uint32_t maxLen){
   uint32_t cpyLen = RxHasNewLine() + 1;
+  if(cpyLen == 1){
+    //no new line
+    memset(buff,0,maxLen);
+    return;
+  }
+  
   if(cpyLen < maxLen){
     readFromBuffer(buff,cpyLen);
     buff[cpyLen - 1] = '\0';//remove new line

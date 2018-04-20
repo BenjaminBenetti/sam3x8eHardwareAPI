@@ -112,15 +112,44 @@ bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer){
   return true;
 }
 
+bool readPageAuto(uint16_t page, uint8_t * buffer){
+  struct FlashDescriptor fd;
+  readFlashDescriptor(&fd,0,0,0);
+  if(page > (fd.flashSize / fd.pageSize)){
+    return readPage(1,page - (fd.flashSize / fd.pageSize) - 1,buffer);
+  }
+  else {
+    return readPage(0,page,buffer);
+  }
+
+}
+
 bool writePage(uint16_t controller, uint16_t page, uint8_t * buffer){
   struct FlashDescriptor fd;
   readFlashDescriptor(&fd,controller,0,0);
 
-  uint8_t * pagePtr = getFlashStartAddress(controller) + fd.pageSize*page;
+  uint32_t * pagePtr = (uint32_t*)getFlashStartAddress(controller) + fd.pageSize*page;
 
   //cpy in to EEFC latch buffer
-  memcpy(pagePtr,buffer,fd.pageSize);
+  //note! memcpy not used here as flash MUST BE WRITEN IN WORD (32bit) CHUNKS!!!!!
+  uint32_t * bptr32 = (uint32_t*)buffer;
+  for(int i =0; i < FLASH_PAGE_SIZE/4;i ++){
+    *pagePtr = *bptr32;
+    pagePtr = pagePtr + 1;
+    bptr32 = bptr32 + 1;
+  }
 
   //send write command
   return rawEEFCCommand(controller,EEFC_EWP,page);
+}
+
+bool writePageAuto(uint16_t page, uint8_t * buffer){
+  struct FlashDescriptor fd;
+  readFlashDescriptor(&fd,0,0,0);
+  if(page > (fd.flashSize / fd.pageSize)){
+    return writePage(1,page - (fd.flashSize / fd.pageSize) - 1,buffer);
+  }
+  else {
+    return writePage(0,page,buffer);
+  }
 }
