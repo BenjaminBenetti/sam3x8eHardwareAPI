@@ -34,6 +34,14 @@ bool nCharactersReadyUart(uint32_t n);
 bool lineReadyUart();
 
 /**
+  read directly from the uart rx buffer.
+  @param buff buffer in which to store the read characters
+  @param n the number of characters to read
+  @return the number of characters actualy read.
+*/
+uint32_t readDirectUART(uint8_t * buff, uint32_t n);
+
+/**
   read the next ready line from the uart buffer
   @param buff the buffer in to which to copy the line
   @param maxLen the max number of bytes to copy to buff
