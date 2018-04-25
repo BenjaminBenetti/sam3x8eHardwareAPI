@@ -102,6 +102,16 @@ uint8_t * getFlashStartAddress(uint16_t controller){
   }
 }
 
+int addressToFlashPage(void * addr){
+  int page = ((uint32_t)addr - (uint32_t)getFlashStartAddress(0))/FLASH_PAGE_SIZE;
+  if(page < 0 || page > FLASH_LEN){
+    return -1;
+  }
+  else {
+    return page;
+  }
+}
+
 bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer){
   struct FlashDescriptor fd;
   readFlashDescriptor(&fd,controller,0,0);
@@ -115,8 +125,8 @@ bool readPage(uint16_t controller, uint16_t page, uint8_t * buffer){
 bool readPageAuto(uint16_t page, uint8_t * buffer){
   struct FlashDescriptor fd;
   readFlashDescriptor(&fd,0,0,0);
-  if(page > (fd.flashSize / fd.pageSize)){
-    return readPage(1,page - (fd.flashSize / fd.pageSize) - 1,buffer);
+  if(page > ((fd.flashSize / fd.pageSize) -1)){
+    return readPage(1,page - (fd.flashSize / fd.pageSize),buffer);
   }
   else {
     return readPage(0,page,buffer);
@@ -146,8 +156,8 @@ bool writePage(uint16_t controller, uint16_t page, uint8_t * buffer){
 bool writePageAuto(uint16_t page, uint8_t * buffer){
   struct FlashDescriptor fd;
   readFlashDescriptor(&fd,0,0,0);
-  if(page > (fd.flashSize / fd.pageSize)){
-    return writePage(1,page - (fd.flashSize / fd.pageSize) - 1,buffer);
+  if(page > ((fd.flashSize / fd.pageSize) - 1)){
+    return writePage(1,page - (fd.flashSize / fd.pageSize),buffer);
   }
   else {
     return writePage(0,page,buffer);

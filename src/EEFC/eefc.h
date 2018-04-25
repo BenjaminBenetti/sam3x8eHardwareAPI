@@ -42,6 +42,13 @@ struct FlashDescriptor{
 uint8_t * getFlashStartAddress(uint16_t controller);
 
 /**
+  translate given address to a flash page.
+  @param addr address to translate
+  @return page number or -1 on error
+*/
+int addressToFlashPage(void * addr);
+
+/**
   read the flash descriptor form the EEFC controller. and populate the flash descriptor structure
   @param fDesc the flash descriptor strcture to be populated by the function call.
   Note, you must have pre allocated, bytesInPlane and bytesPerLockRegion arrays
