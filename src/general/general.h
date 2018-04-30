@@ -13,5 +13,6 @@
 */
 void setupMainClock(void);
 
+#define SYSTEM_CLOCK_SPEED 84000000 // 84 Mhz
 
 #endif

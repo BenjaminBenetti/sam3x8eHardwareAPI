@@ -1,5 +1,5 @@
 /**
-@file 
+@file
 @brief hardware timer interface
 */
 
@@ -24,5 +24,22 @@ void sleep(int milliseconds);
 every 1,700 ish hours.
 */
 uint32_t getTime();
+
+/**
+  start initialize systick to interval in ms
+  @see startSysTick
+  @see stopSysTick
+*/
+void systickConfig(uint32_t interval);
+
+/**
+  stops system tick and resets in to TOP
+*/
+void stopSysTick(void);
+
+/**
+  start the systick timer at TOP
+*/
+void startSysTick(void);
 
 #endif
