@@ -5,7 +5,7 @@ CFLAGS = --std=gnu11 -O0 -mcpu=cortex-m3 -mthumb -fno-builtin --specs=nosys.spec
 INCLD = -I ../3rdParty/ATMEL/ -I ../3rdParty/CMSIS/include
 
 OUTPUT_DIR = ../build
-SRC_CC = contextSwitching/*.c UART/*.c Timers/*.c EEFC/*.c general/*.c
+SRC_CC = contextSwitching/*.c UART/*.c Timers/*.c EEFC/*.c general/*.c PIO/*.c
 
 libsam3x8e.a : $(SRC_CC) $(OUTPUT_DIR)/.dirstamp
 	$(CC) $(CFLAGS) -c $(SRC_CC) $(INCLD)
