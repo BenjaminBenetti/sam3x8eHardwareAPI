@@ -11,6 +11,22 @@ void sleep(int milliseconds) {
 	while ((sleep_until - RTT->RTT_VR) > 0);
 }
 
+#define NANO_PER_CLOCK (1000000000 / SYSTEM_CLOCK_SPEED)
+#define NANO_OVERHEAD (8 * NANO_PER_CLOCK)
+__attribute__ ((naked)) void nanoSleep(uint32_t nanosec){
+  asm(// assume about 8 instruction overhead on entry
+    "mov r0, %[over] \n"
+    "nanoSleepStart: \n"
+    "add r0, %[clk] \n"
+    "cmp r0, %[nano] \n"
+    "blo nanoSleepStart \n"
+    "bx lr \n"
+    :
+    : [nano] "r" (nanosec), [clk] "r" (NANO_PER_CLOCK*3), [over] "r" (NANO_OVERHEAD)
+    :
+  );
+}
+
 uint32_t getTime(){
   return RTT->RTT_VR;
 }

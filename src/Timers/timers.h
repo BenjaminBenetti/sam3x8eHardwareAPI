@@ -20,6 +20,13 @@ sleep for the given number of milliseconds
 void sleep(int milliseconds);
 
 /**
+sleep for the given time in nanoseconds.
+note with 84Mhz clock this sleep will be +/- 11 ns.
+you can not wait less than about 143 ns as this is the call overhead (depending on pipelining ofc ).
+*/
+void nanoSleep(uint32_t nanosec);
+
+/**
 @return the current time in milliseconds since power on. this value will roll over
 every 1,700 ish hours.
 */
