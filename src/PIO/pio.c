@@ -83,15 +83,16 @@ void setPinDirection(uint8_t bank, uint32_t pin, uint8_t direction){
     uint32_t * outputWriteReg = lookupRegister(bank, REG_PIO_OWER);
     *outputEnableReg |= pin;
     *outputWriteReg |= pin;
+    setPullup(bank,pin,false);
   }
 }
 
-uint8_t readPin(uint8_t bank, uint32_t pin){
+inline uint8_t readPin(uint8_t bank, uint32_t pin){
   uint32_t * pinStatus = lookupRegister(bank,REG_PIO_PDSR);
   return *(pinStatus) & pin ? 1 : 0;
 }
 
-void setPin(uint8_t bank, uint32_t pin, uint8_t llvl){
+inline void setPin(uint8_t bank, uint32_t pin, uint8_t llvl){
   if(llvl){
     uint32_t * stReg = lookupRegister(bank,REG_PIO_SODR);
     *stReg |= pin;

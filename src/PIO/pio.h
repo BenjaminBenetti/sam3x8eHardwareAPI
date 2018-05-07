@@ -70,7 +70,7 @@ uint8_t readPin(uint8_t bank, uint32_t pin);
 void setPin(uint8_t bank, uint32_t pin, uint8_t llvl);
 
 /**
-  enable or disable the pullup on the given pin 
+  enable or disable the pullup on the given pin
 */
 void setPullup(uint8_t bank, uint32_t pin, bool en);
 
