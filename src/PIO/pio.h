@@ -17,6 +17,22 @@
 #define PIO_OUT 1
 
 
+typedef struct {
+  uint8_t bank;
+  uint32_t pin;
+  uint32_t * setReg;//optional (used for performance by some modules)
+} Pin;
+
+#define SET_PIN(p,v) setPin(p.bank,p.pin,v)
+#define READ_PIN(p) readPin(p.bank,p.pin)
+
+
+/**
+  construct a new Pin structure
+*/
+Pin toPin(uint8_t bank, uint32_t pin, uint32_t * setReg);
+
+
 /**
   enable the specified pio bank. see pinout of board for settings
 */
