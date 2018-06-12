@@ -38,3 +38,14 @@ void setupMainClock(void){
 
   //we now should now be at 84 Mhz
 }
+
+// start random number generator
+void startTRNG(void){
+  REG_PMC_PCER1 |= (1 << 9); // 41 is TRANG peripheral id
+  TRNG->TRNG_CR = TRNG_CR_KEY(0x524e47) | TRNG_CR_ENABLE;
+}
+
+//get random 32 bit number from TRNG
+uint32_t random(void){
+  return TRNG->TRNG_ODATA;
+}
