@@ -44,6 +44,9 @@ void initUART(void){
   UART->UART_IDR = 0xFFFFFFFF;
   UART->UART_IER = UART_IER_RXRDY;
   NVIC_EnableIRQ(IRQ_UART_ID);
+  //in system call heavy workloads it is important that we give UART higher priority than SVCall (UART is priority 0, the default).
+  //if we do not then UART can become un responsive. TODO move this? but where? hm.....
+  NVIC_SetPriority(SVCall_IRQn, 1);
 
   //setup buffer
   memset(rxBuffer,0,UART_RX_BUFFER_SIZE*sizeof(char));
